@@ -6,7 +6,6 @@ describe("Airport", function() {
     luton = new Airport();
     plane = jasmine.createSpyObj('plane', ['land']);
     plane.land.and.callFake(function(){
-      // return null;
     });
   });
 
