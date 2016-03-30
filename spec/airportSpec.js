@@ -4,9 +4,11 @@ describe("Airport", function() {
 
   beforeEach(function(){
     luton = new Airport();
-    plane = jasmine.createSpyObj('plane', ['land']);
-    plane.land.and.callFake(function(){
-    });
+    plane = jasmine.createSpyObj('plane', ['land', 'takeOff']);
+    // plane.land.and.callFake(function(){
+    // });
+    // plane.takeOff.and.callFake(function(){
+    // });
   });
 
   it("has a default capacity", function(){
@@ -35,16 +37,20 @@ describe("Airport", function() {
     }).toThrowError("Airport is full")
   })
 
-  it("instructs a plane to take off", function(){
-
-  })
+  it("instructs a plane to take off", function() {
+    luton.instructLanding(plane)
+    luton.instructTakeOff(plane)
+      expect(plane.takeOff()).toHaveBeenCalled;
+      expect(luton.hangar.length).toEqual(0)
+      expect(luton.hangar).not.toContain(plane)
+    })
 
   it("prevents landing when weather is stormy", function(){
 
   })
 
   it("prevents take off when weather is storym", function(){
-    
+
   })
 
 })

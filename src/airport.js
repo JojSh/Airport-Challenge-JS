@@ -11,3 +11,8 @@ Airport.prototype.instructLanding = function(plane) {
     this.hangar.push(plane);
   }
 }
+
+Airport.prototype.instructTakeOff = function(plane){
+  plane.takeOff();
+  this.hangar.splice(-1);
+}
