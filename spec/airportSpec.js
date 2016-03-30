@@ -5,10 +5,7 @@ describe("Airport", function() {
   beforeEach(function(){
     luton = new Airport();
     plane = jasmine.createSpyObj('plane', ['land', 'takeOff']);
-    // plane.land.and.callFake(function(){
-    // });
-    // plane.takeOff.and.callFake(function(){
-    // });
+    weather = jasmine.createSpyObj('weather', ['isStormy' === false])
   });
 
   it("has a default capacity", function(){
@@ -45,8 +42,16 @@ describe("Airport", function() {
       expect(luton.hangar).not.toContain(plane)
     })
 
+    it("can tell if weather is stormy", function(){
+      expect(luton.isStormy()).toBeFalsy();
+    })
+
   it("prevents landing when weather is stormy", function(){
-    spyOn(Math,'random').and.returnValue(0.2);
+    // spyOn(Math,'random').and.returnValue(0.2);
+    spyOn(luton, 'isStormy').and.returnValue(true);
+    expect(function(){
+      luton.instructLanding(plane);
+    }).toThrowError("Weather is stormy");
   })
 
   it("prevents take off when weather is stormy", function(){
