@@ -46,10 +46,10 @@ describe("Airport", function() {
     })
 
   it("prevents landing when weather is stormy", function(){
-
+    spyOn(Math,'random').and.returnValue(0.2);
   })
 
-  it("prevents take off when weather is storym", function(){
+  it("prevents take off when weather is stormy", function(){
 
   })
 
